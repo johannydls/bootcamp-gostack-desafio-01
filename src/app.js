@@ -2,6 +2,8 @@ const express = require('express');
 const routes = require('./routes');
 const Database = require('./database');
 
+const CountRequestsMiddleware = require('./app/middlewares/countRequests');
+
 class App {
   constructor() {
     this.server = express();
@@ -12,6 +14,7 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    this.server.use(CountRequestsMiddleware);
   }
 
   routes() {
